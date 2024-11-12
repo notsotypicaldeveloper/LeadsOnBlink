@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import {Login} from './components/Login';
+import {AuthForm} from './components/AuthForm';
 
 function App() {
   return (
     <>
-      <Login />
+      <AuthForm />
     </>
   )
 }
