@@ -3,14 +3,8 @@ import * as userAuthentication from "../controllers/userAuthentication";
 
 const router = express.Router();
 
-router.post("/signUp", async (req, res) => 
-  {
-    return userAuthentication.register(req, res);
-  });
-  
-router.post("/login", async (req, res) => {
-    
-  });
+router.route("/signUp").post(userAuthentication.register);
+router.route("/login").post(userAuthentication.login);
 
 
   export {router as userAuthRouter};
