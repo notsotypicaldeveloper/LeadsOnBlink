@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 export const Login = () => {
     const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ export const Login = () => {
 
             if(e.code == "ERR_NETWORK") {
                 console.log(`Sorry! Backend server is down or busy!`);
+                toast(`Sorry! Backend server is down or busy!`);
             }
         }
     }
