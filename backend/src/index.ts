@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import {userAuthRouter} from "./router/userAuthentication";
 import {connectDb}  from "./db-connection";
+import { errorMiddleware } from "./middlewares/errorMiddleware";
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.get("/", (req: express.Request, res: express.Response) =>
 });
 
 app.use('/api',userAuthRouter);
+
+app.use(errorMiddleware);
 
 
 connectDb().then(()=>{

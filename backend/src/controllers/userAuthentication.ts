@@ -3,7 +3,7 @@ import { usersModel } from "../models/user-model";
 import bcrypt from "bcrypt";
 
 const SALT_ROUND = 5;
-export async function register(req: Express.Request, res: any) {
+export async function register(req: Express.Request, res: any, next: any) {
     try 
     {
         const { name, email, password } = (req as any).body;
@@ -30,8 +30,8 @@ export async function register(req: Express.Request, res: any) {
     }
     catch(e) {
         console.log("e = ", e);
-        return res.status(500).json({message: "Internal Server Error!", data: e})
-
+        // return res.status(500).json({message: "Internal Server Error!", data: e})
+        next(e);
     }
 }
 
