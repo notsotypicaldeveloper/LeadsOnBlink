@@ -1,10 +1,12 @@
+require("dotenv").config();
+
 import express from "express";
 import cors from "cors";
 import crypto from "crypto";
+import { userCollection } from "./db/mongoModel";
 
 const Razorpay = require("razorpay");
 
-require("dotenv").config();
 
 const app = express();
 
@@ -21,6 +23,64 @@ app.get("/", (req: express.Request, res: express.Response) => {
     console.log("getting error: ", e);
   }
 });
+
+app.post("/signUp", async(req, res)=> {
+  try {
+    const {email, password} = req.body;
+
+    if(!email || !password) {
+      res.status(400).send("Email or password are missing");
+      return;
+    }
+    const check =  await userCollection.findOne({email: email});
+    let data = {
+      email: email,
+      password: password
+    }
+    if(check) {
+      res.status(400).send("Email already exists!");
+      return;
+    }
+    else {
+      let saveResult = await userCollection.insertMany({data});
+      console.log(`saveResult = `, saveResult);
+      res.status(200).send("Sucessfully registered!");
+      return;
+    }
+  }
+  catch(e) {
+    console.log(e);
+    res.json("not exist"); 
+  }
+})
+
+app.post("/login", async(req, res)=> {
+  try {
+    const {email, password} = req.body;
+    if(!email || !password) {
+      res.status(400).send("Email or password are missing");
+      return;
+    }
+
+    const check = await userCollection.findOne({email: email});
+    if(check) {
+        res.status(200).send("Login Successful!");
+        return;
+    }
+    else {
+      res.status(400).send(`Sorry! No user exists with ${email}\n`);
+      return;
+    }
+  }
+  catch(e) {
+
+    console.log(e);
+    res.json("not exist");
+
+  }
+  
+})
+
 
 app.post("/order", async (req: express.Request, res: express.Response) => {
   try {

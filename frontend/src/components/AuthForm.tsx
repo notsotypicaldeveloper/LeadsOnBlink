@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 export const AuthForm = () => {
     const [accessingLogin, setAccessingLogin] = useState(true);
 
+  
+    
   return (
     <>
         <div className='auth-background'>

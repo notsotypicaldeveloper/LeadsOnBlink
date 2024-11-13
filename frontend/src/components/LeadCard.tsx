@@ -17,14 +17,14 @@ export const LeadCard = (props: ILeadProps) => {
         <p>
             Name: {props.firstName} {props.lastName} 
             <br/>
-            CompanyName: {props.companyName}
+            Company: {props.companyName}
             <br/>
-            Linkedin: {props.linkedinProfile}
+            Linkedin Url: {props.linkedinProfile}
             <br/>
             
-            jobTitle: {props.jobTitle}
+            Designationn: {props.jobTitle}
             <br/>
-            emailAddress: {props.emailAddress},
+            Email: {props.emailAddress},
             <br/>
             phoneNumber: {props.phoneNumber}
         </p>
