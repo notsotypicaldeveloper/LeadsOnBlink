@@ -1,32 +1,14 @@
-const Razorpay = require("razorpay");
+import express from "express";
+import * as razorpayController from "../controllers/razorpay";
 
 
+const router = express.Router();
 
-// app.post("/order", async (req: express.Request, res: express.Response) => {
-//     try {
-//       const instance = new Razorpay({
-//         key_id: process.env.RAZORPAY_KEY_ID,
-//         key_secret: process.env.RAZORPAY_SECRET,
-//       });
+router.route("/razorpay-createOrder").post(razorpayController.createOrder);
+
   
-//       const options = {
-//         amount: 50000, // amount in smallest currency unit
-//         currency: "INR",
-//         receipt: Date.now().toString(10),
-//       };
-  
-//       const order = await instance.orders.create(options);
-  
-//       if (!order) {
-//         res.status(500).send("Some error occured");
-//       } else {
-//         res.send(order);
-//       }
-//     } catch (e) {
-//       console.log("getting error: ", e);
-//     }
-//   });
-  
+export {router as razorpayRouter};
+
 //   app.post(
 //     "/order/validate",
 //     async (req: express.Request, res: express.Response) => {

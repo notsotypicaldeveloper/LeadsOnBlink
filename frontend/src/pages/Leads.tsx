@@ -1,7 +1,81 @@
+import { useState } from 'react';
 import { useAuth } from '../context/AuthContext'
 
 export const Leads = () => {
   const {leads} = useAuth();
+  // const [amount, setAmount] = useState(0);
+  
+  const paymentHandler = async (e: any) => {
+    // console.log("amount = ", amount);
+    const amount = 100;
+    const response = await fetch("http://localhost:5000/api/razorpay-createOrder", {
+      method: "POST",
+      body: JSON.stringify({
+        amount,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const apiResponse = await response.json();
+    const order = apiResponse.data;
+
+    console.log(order);
+
+    var options = {
+      key: "rzp_test_SrrurMUZ8xOO7f", // Enter the Key ID generated from the Dashboard
+      amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Acme Corp", //your business name
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      // handler: async function (response: any) {
+      //   const body = {
+      //     ...response,
+      //   };
+
+      //   const validateRes = await fetch(
+      //     "http://localhost:5000/order/validate",
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify(body),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   const jsonRes = await validateRes.json();
+      //   console.log(jsonRes);
+      // },
+      prefill: {
+        //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+        name: "Small Big Growth Customer", //your customer's name
+        email: "smallbiggrowth@example.com",
+        contact: "9000000000", //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    var rzp1 = new (window as any).Razorpay(options);
+    rzp1.on("payment.failed", function (response: any) {
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+    });
+    rzp1.open();
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -33,7 +107,7 @@ export const Leads = () => {
             <p>{linkedinUrl}</p> 
             <p>{phoneNumber}</p>
             <p>Email: {email}</p>
-            <p>Pay to reveal email:</p><button>Pay {price} INR</button>
+            <p>Pay to reveal email:</p><button onClick={paymentHandler}>Pay {price} INR</button>
           </div>
           </div>
         </>)
@@ -48,42 +122,3 @@ export const Leads = () => {
 }
 
 
-// import React from 'react'
-
-// // interface ILeadProps  {
-// //     firstName: string, 
-// //     lastName: string, 
-// //     companyName: string,
-// //     linkedinProfile: string,
-// //     jobTitle: string,
-// //     emailAddress: string,
-// //     phoneNumber: string 
-// // }
-// export const LeadCard = (props: ILeadProps) => {
-
-
-  
-//   return (
-//     <>
-//     <div className='LeadCardContainer'>
-//         <div className='LeadCard' >
-//         <p>
-//             Name: {props.firstName} {props.lastName} 
-//             <br/>
-//             Company: {props.companyName}
-//             <br/>
-//             Linkedin Url: {props.linkedinProfile}
-//             <br/>
-            
-//             Designationn: {props.jobTitle}
-//             <br/>
-//             Email: {props.emailAddress},
-//             <br/>
-//             phoneNumber: {props.phoneNumber}
-//         </p>
-//             <button>Pay</button>
-//         </div>
-//     </div>
-//     </>
-//   )
-// }

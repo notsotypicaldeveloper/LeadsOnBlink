@@ -6,6 +6,7 @@ import {userAuthRouter} from "./router/userAuthentication";
 import {connectDb}  from "./db-connection";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { leadsRouter } from "./router/leads";
+import { razorpayRouter } from "./router/razorpay";
 
 const app = express();
 
@@ -28,8 +29,9 @@ app.get("/", (req: express.Request, res: express.Response) =>
       }
 });
 
-app.use('/api',userAuthRouter);
-app.use('/api',leadsRouter);
+app.use('/api',userAuthRouter, leadsRouter );
+// app.use('/api',leadsRouter);
+app.use('/api',razorpayRouter);
 
 app.use(errorMiddleware);
 

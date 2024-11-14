@@ -12,7 +12,25 @@ export const AuthContextProvider = (props: AuthContextProviderProps)=>{
     const BACKEND_API_URL = import.meta.env.VITE_APP_URI_API;
     
     const [token, setToken] = useState(localStorage.getItem("token"));
-    const [leads, setLeads] = useState([]);
+    const [leads, setLeads] = useState([
+        {
+            "_id": "6735f76383968288e8925151",
+            "firstName": "Jenny",
+            "Company": "Google",
+            "email": "******@***.com",
+            "linkedinUrl": "https://www.linkedin.com/jenny",
+            "phoneNumber": "+91-763633030",
+            "price": "100"
+        },
+        {
+            "_id": "6735f80083968288e8925152",
+            "firstName": "James",
+            "Company": "SmallBigGrowth\"",
+            "email": "******@***.com",
+            "linkedinUrl": "https://www.linkedin.com/james",
+            "phoneNumber": "+91-7839933030",
+            "price": "500"
+        }]);
     const storeTokenInLocalStorage = (serverToken: string) => {
         setToken(serverToken);
         return localStorage.setItem("token", serverToken);
