@@ -9,7 +9,6 @@ import {AuthContextProvider} from './context/AuthContext.tsx';
 createRoot(document.getElementById('root')!).render(
   <>
   <AuthContextProvider>
-  {/* <StrictMode> */}
     <App />
     <ToastContainer
     position="top-right"
@@ -23,7 +22,6 @@ createRoot(document.getElementById('root')!).render(
     pauseOnHover
     theme="colored"
     />
-  {/* </StrictMode> */}
   </AuthContextProvider>
   </>
 )

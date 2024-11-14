@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom";
-import {useAuth} from "../context/AuthContext";
+// import {useAuth} from "../context/AuthContext";
 import {toast} from "react-toastify";
 
 
 export const SignUp = () => {
 
-  const [token, setToken]  = useState(localStorage.getItem("token"));
+  // const [token, setToken]  = useState(localStorage.getItem("token"));
 
     const [user, setUser] = useState({
       name: "",

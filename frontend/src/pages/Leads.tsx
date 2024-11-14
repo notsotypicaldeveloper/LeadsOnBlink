@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useAuth } from '../context/AuthContext'
 
 export const Leads = () => {
