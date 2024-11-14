@@ -11,7 +11,18 @@ createRoot(document.getElementById('root')!).render(
   <AuthContextProvider>
   {/* <StrictMode> */}
     <App />
-    <ToastContainer />
+    <ToastContainer
+    position="top-right"
+    autoClose={4000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="colored"
+    />
   {/* </StrictMode> */}
   </AuthContextProvider>
   </>

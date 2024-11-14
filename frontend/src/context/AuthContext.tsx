@@ -9,9 +9,12 @@ type AuthContextProviderProps = {
 
 export const AuthContextProvider = (props: AuthContextProviderProps)=>{
 
+    const BACKEND_API_URL = import.meta.env.VITE_APP_URI_API;
+    
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [leads, setLeads] = useState([]);
     const storeTokenInLocalStorage = (serverToken: string) => {
+        setToken(serverToken);
         return localStorage.setItem("token", serverToken);
     };
 
@@ -44,7 +47,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps)=>{
         getLeads();
     }, [])
     return (
-        <AuthContext.Provider value={{storeTokenInLocalStorage, LogoutUser,loggedIn, leads}}>
+        <AuthContext.Provider value={{storeTokenInLocalStorage, LogoutUser,loggedIn, leads, BACKEND_API_URL}}>
             {props.children}
         </AuthContext.Provider>
     )

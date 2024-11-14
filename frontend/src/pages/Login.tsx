@@ -53,6 +53,12 @@ export const Login = () => {
             navigate("/leads");
 
           }
+          else {
+            const res_data = await response.json();
+  
+            toast.error(res_data.message)
+            return;
+          }
         }
         catch(e:any){
           console.error(e);

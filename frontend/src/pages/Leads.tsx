@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuth } from '../context/AuthContext'
 
 export const Leads = () => {
@@ -6,7 +5,7 @@ export const Leads = () => {
 
   return (
     <>
-    <section className='section-leads'>
+    <section className='leads-section'>
 
       <div className='container'>
         <h1 className='main-heading'>Leads Info</h1>
@@ -23,21 +22,20 @@ export const Leads = () => {
         return(<>          
           <div className='card' key={index} >
             <div className='card-img'>
-              <img src={imgPath}alt="developer img"  width="300px" height="300px"/>
+              <img src={imgPath} alt="developer img"  width="100px" height="100px"/>
             </div>
-          </div> 
     
         <div className='card-details'>
            <div className='grid  grid-two-cols'>
               <p>{firstName}</p>
-              <p>Price: {price}</p>
             </div>
-
             <p>{company}</p>
-            <h2>{email}</h2>
-            <p>{linkedinUrl}</p>
+            <p>{linkedinUrl}</p> 
             <p>{phoneNumber}</p>
-        </div>
+            <p>Email: {email}</p>
+            <p>Pay to reveal email:</p><button>Pay {price} INR</button>
+          </div>
+          </div>
         </>)
 
       })}
