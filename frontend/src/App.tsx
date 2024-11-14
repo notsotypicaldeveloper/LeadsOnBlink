@@ -1,28 +1,33 @@
-import { useState } from 'react'
 import './App.css'
-import {AuthForm} from './components/AuthForm';
-import {LeadCard} from './components/LeadCard';
-import {Login} from './components/Login';
-import {SignUp} from './components/SignUp';
+import {Routes, Route, BrowserRouter} from "react-router-dom";
 
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {SignUp} from './pages/SignUp';
+import {Home} from './pages/Home';
+import {Login} from './pages/Login';
+import {Leads} from './pages/Leads';
+
+import {Navbar} from "./components/Navbar";
+import { Logout } from './pages/Logout';
+
 
 
 function App() {
   return (
     <>
-      {/* <SignUp /> */}
-      <Login />
-      {/* <div className='App'>
-        <Router>
-            <Routes>
-              <Route path="/" element={<AuthForm />}></Route>
-              <Route path="/list" element={<LeadCard firstName ={"aba"} lastName= {"aba"}  companyName={"aba"} linkedinProfile= {"aba"} jobTitle= {"aba"} emailAddress= {"aba"} phoneNumber= {"aba" } />}></Route>
+      <BrowserRouter>
+        <Navbar />
+          <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/leads" element={<Leads />} />
 
-            </Routes>
-        </Router>
-      </div> */}
-      {/* <AuthForm /> */}
+              <Route path="/*" element={<Home />} />
+    
+          </Routes>
+      </BrowserRouter>
+     
 
       {/* <LeadCard firstName ={"aba"} lastName= {"aba"}  companyName={"aba"} linkedinProfile= {"aba"} jobTitle= {"aba"} emailAddress= {"aba"} phoneNumber= {"aba" } />
       <LeadCard firstName ={"aba"} lastName= {"aba"}  companyName={"aba"} linkedinProfile= {"aba"} jobTitle= {"aba"} emailAddress= {"aba"} phoneNumber= {"aba" } />

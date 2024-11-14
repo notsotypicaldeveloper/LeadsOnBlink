@@ -5,13 +5,13 @@ import cors from "cors";
 import {userAuthRouter} from "./router/userAuthentication";
 import {connectDb}  from "./db-connection";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
+import { leadsRouter } from "./router/leads";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-
 
 const port = process.env.PORT;
 
@@ -29,6 +29,7 @@ app.get("/", (req: express.Request, res: express.Response) =>
 });
 
 app.use('/api',userAuthRouter);
+app.use('/api',leadsRouter);
 
 app.use(errorMiddleware);
 

@@ -1,99 +1,184 @@
-.auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.auth-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+:root {
+  --bg-color: #f4f3ff;
+  --btn-color: #646cff;
+  --dark-color: #242424;
+  --helper-color:#99b9ff;
 }
 
-.auth-form-toggle {
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+html {
+  font-size: 62.5%;
+}
+
+.container {
+  max-width: 140rem;
+  padding: 4rem 2.4rem;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 6.4rem
+}
+.grid-two-cols {
+  grid-template-columns: repeat(2, 1fr);
+  
+}
+
+.grid-three-cols {
+  grid-template-columns: repeat(3, 1fr);
+  
+}
+
+h2 {
+  font-size: 5.4rem;
+  line-height: 1.1;
+  font-weight: bold;
+}
+p, li, label, input {
+  font-size: 1.8rem;
+  line-height: 1.56;
+  letter-spacing: 0.1rem;
+}
+
+a {
+  font-weight: 500;
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+  color: var(--btn-color)
+}
+
+.container {
+  max-width: 144rem;
+  padding: 4.2rem 2.4rem;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
-.auth-form-toggle button {
-  width: 50%;
-  padding: 10px;
-  background-color: #f3f3f3;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 10px 10px 0 0;
-}
-
-
-.auth-form-toggle .active {
-  background-color: #317dac;
-  color: white;
-}
-
-.auth-input-form {
+ul {
   display: flex;
-  flex-direction: column;
+  gap: 3.2rem;
+  list-style: none;
 }
 
-.auth-input-form h2 {
-  margin-bottom: 20px;
-}
-
-.auth-input-form input {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.auth-input-form button {
-  padding: 10px;
-  background-color:#033452;
-  color: white;
-  border: none;
-  border-radius: 5px;
+button {
+  text-transform: capitalize;
+  padding: 1rem 2.2rem;
+  font-size: 1.7rem;
+  font-weight: 500;
+  background-color: var(--btn-color);
+  border-radius: 0.8rem;
+  --webkit-border-radius: 0.8rem;
+  --moz-border-radius: 0.8rem;
+  --ms-border-radius: 0.8rem;
+  --o-border-radius: 0.8rem;
+  border: 0.1rem solid transparent;
   cursor: pointer;
+  letter-spacing: 0.1rem;
+  transition: border-color 0.3s;
 }
 
-.auth-input-form a {
-  color: #007bff;
-  text-decoration: none;
-  margin-bottom: 10px;
-  text-align: right;
+button:hover {
+  box-shadow: inset 0 0 0 0.2rem var(--bg-color);
+  border: 0.2 rem
 }
 
-.auth-input-form p {
-  text-align: center;
+a.hover,
+a.active {
+  color: #535bf2
 }
 
-.auth-background {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #0C67A0;
+.home-section {
+  & .grid {
+    align-items: center;
+
+    & .home-section-content {
+      &p {
+        margin: 2.4rem 0 4.8rem 0;
+        &:first-child {
+          margin: 0 0 1.2rem 0;
+        }
+      }
+    }
+
+    .home-section-image {
+      display: flex;
+      justify-content: center;
+
+      /* & img {
+        width: 70%;
+        height: auto;
+      } */
+    }
+  }
 }
 
-.LeadCard {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+.secondary-btn {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 0.2rem var(--btn-color);
+  margin-left: 3.2rem;
 }
 
-/* On mouse-over, add a deeper shadow */
-.LeadCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+/** -----------------------
+** signup section css
+** -------------------------  */
+
+.section-signup {
+  padding: 0 3.2rem;
+
+  & .container {
+    /* background-color: #fff; */
+    padding-top: 3.2rem;
+    align-items: center;
+
+    & img {
+      width: 80%;
+      height: auto;
+    }
+  }
+
+  & .signup-form {
+    & label {
+      display: block;
+      margin: 2.4rem 0 0.8rem 0;
+      text-transform: capitalize;
+    }
+    & input {
+      width: 80%;
+      padding: 0.6rem 0.6rem;
+    }
+
+    & button {
+      margin-top: 3.2rem;
+    }
+  }
 }
 
-.LeadCardContainer {
-  padding: 2px 16px;
-  width: 400px;
+
+
+/* == */
+.main-heading {
+  position: relative;
+  text-transform: capitalize;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 0.5rem;
+    background-color: var(--btn-color);
+  }
 }
+
