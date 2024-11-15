@@ -26,18 +26,36 @@ export const Leads = () => {
 
   const paymentHandler = async(e:any) => {
     
-    let amount = 0;
-    if(e.target.name == "payAmount") {
+    let leadId = "";
+    if(e.target.name == "leadId") {
       console.log("e.target.value === ", e.target.value)
       // setAmount(e.target.value)
-      amount = e.target.value;
+      leadId = e.target.value;
     }
+
+    console.log("leadId == :::", leadId);
+
+
+    let leadDetails = leads.find((o: any) => o._id === leadId);
+
+    leadId = leadDetails._id;
+
+    console.log("leadDetails  = ", leadDetails);
+    console.log("leadId = ", leadId);
+
+
+    let amount = leadDetails.price;
+    
     console.log(`e ========:::`, e);
 
 
     const response = await fetch("http://localhost:5000/api/razorpay-createOrder", {
       method: "POST",
-      body: JSON.stringify({amount: amount}),
+      body: JSON.stringify(
+        {
+          amount: amount,
+          leadId: leadId
+      }),
 
       headers: {
         "Content-Type": "application/json",
@@ -74,9 +92,16 @@ export const Leads = () => {
           }
         );
 
-        console.log("validateRes======:::", validateRes);
-        const jsonRes = await validateRes.json();
-        console.log(jsonRes);
+
+        if(validateRes.ok) {
+          const validResponseObj = await validateRes.json();
+
+          const data = validResponseObj.data;
+
+          alert(`Email is ${data.email}`);
+          toast.success(`Email is: ${data.email}`);
+        } 
+        
       },
       prefill: {
         //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
@@ -103,7 +128,6 @@ export const Leads = () => {
       // alert(response.error.metadata.payment_id);
 
       toast.error(`${response.error.code} | ${response.error.description} | ${response.error.reason}`)
-
     });
       rzp1.open();
       e.preventDefault();
@@ -128,7 +152,7 @@ export const Leads = () => {
       <div className='container grid grid-three-cols'> 
 
       {leads.map((curElem: any, index: any)=>{
-        const {firstName, price, company, email, linkedinUrl, phoneNumber} = curElem;
+        const {firstName, price, company, email, linkedinUrl, phoneNumber, _id} = curElem;
         const imgPath = `/images/developer-`+ (index%5) + ".jpg";
         console.log("imgPath = ", imgPath);
 
@@ -140,13 +164,14 @@ export const Leads = () => {
     
         <div className='card-details'>
            <div className='grid  grid-two-cols'>
+              <p>{_id}</p>
               <p>{firstName}</p>
             </div>
             <p>{company}</p>
             <p>{linkedinUrl}</p> 
             <p>{phoneNumber}</p>
             <p>Email: {email}</p>
-            <p>Pay to reveal email:</p><button onClick={paymentHandler}  name="payAmount" value={price} >Pay {price} INR</button>
+            <p>Pay to reveal email:</p><button onClick={paymentHandler}  name="leadId" value={_id} >Pay {price} INR</button>
           </div>
           </div>
         </>)

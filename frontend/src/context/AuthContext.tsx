@@ -30,6 +30,24 @@ export const AuthContextProvider = (props: AuthContextProviderProps)=>{
             "linkedinUrl": "https://www.linkedin.com/james",
             "phoneNumber": "+91-7839933030",
             "price": "500"
+        },
+        {
+            "_id": "6735f81983968288e8925154",
+            "firstName": "Shruti",
+            "Company": "Microsoft",
+            "email": "******@***.com",
+            "linkedinUrl": "https://www.linkedin.com/shruti",
+            "phoneNumber": "+91-990220002",
+            "price": "70"
+        },
+        {
+            "_id": "67362ccfa776271e68eb6060",
+            "firstName": "Jimmy",
+            "Company": "Microsoft",
+            "email": "******@***.com",
+            "linkedinUrl": "https://www.linkedin.com/jimmy",
+            "phoneNumber": "+91-990220002",
+            "price": "170"
         }]);
     const storeTokenInLocalStorage = (serverToken: string) => {
         setToken(serverToken);
