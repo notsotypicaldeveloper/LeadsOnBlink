@@ -73,6 +73,8 @@ export const Leads = () => {
             },
           }
         );
+
+        console.log("validateRes======:::", validateRes);
         const jsonRes = await validateRes.json();
         console.log(jsonRes);
       },
@@ -92,13 +94,16 @@ export const Leads = () => {
 
     let rzp1 = new (window as any).Razorpay(options);
     rzp1.on("payment.failed", function (response: any) {
-      alert(response.error.code);
-      alert(response.error.description);
-      alert(response.error.source);
-      alert(response.error.step);
-      alert(response.error.reason);
-      alert(response.error.metadata.order_id);
-      alert(response.error.metadata.payment_id);
+      // alert(response.error.code);
+      // alert(response.error.description);
+      // alert(response.error.source);
+      // alert(response.error.step);
+      // alert(response.error.reason);
+      // alert(response.error.metadata.order_id);
+      // alert(response.error.metadata.payment_id);
+
+      toast.error(`${response.error.code} | ${response.error.description} | ${response.error.reason}`)
+
     });
       rzp1.open();
       e.preventDefault();
