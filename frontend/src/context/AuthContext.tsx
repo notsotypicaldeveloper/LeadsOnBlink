@@ -52,14 +52,14 @@ export const AuthContextProvider = (props: AuthContextProviderProps)=>{
         }]);
 
         
-    const [token, setToken] = useState(localStorage.getItem("token"));
+    // const [token, setToken] = useState(localStorage.getItem("token"));
 
     // const setAccessToken = (token: any)=> {
     //     setToken(token);
     //     return localStorage.setItem("token", token);
     // }
     const LogoutUser = () => {
-        setToken("");
+        // setToken("");
         return localStorage.removeItem("token");
     }
 
