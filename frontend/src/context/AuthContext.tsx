@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-export const AuthContext = createContext<any>("");
+export const AuthContext = createContext<any>(null);
 
 type AuthContextProviderProps = {
     children: React.ReactNode;
@@ -10,8 +10,9 @@ type AuthContextProviderProps = {
 export const AuthContextProvider = (props: AuthContextProviderProps)=>{
 
     const BACKEND_API_URL = import.meta.env.VITE_APP_URI_API;
-    
-    const [token, setToken] = useState(localStorage.getItem("token"));
+
+    console.log("BACKEND_API_URL = ", BACKEND_API_URL);
+
     const [leads, setLeads] = useState([
         {
             "_id": "6735f76383968288e8925151",
@@ -49,14 +50,14 @@ export const AuthContextProvider = (props: AuthContextProviderProps)=>{
             "phoneNumber": "+91-990220002",
             "price": "170"
         }]);
-    const storeTokenInLocalStorage = (serverToken: string) => {
-        setToken(serverToken);
-        return localStorage.setItem("token", serverToken);
-    };
 
-    let loggedIn = !!token;
+        
+    const [token, setToken] = useState(localStorage.getItem("token"));
 
-    console.log("loggedIn===::", loggedIn)
+    // const setAccessToken = (token: any)=> {
+    //     setToken(token);
+    //     return localStorage.setItem("token", token);
+    // }
     const LogoutUser = () => {
         setToken("");
         return localStorage.removeItem("token");
@@ -82,19 +83,19 @@ export const AuthContextProvider = (props: AuthContextProviderProps)=>{
     useEffect(()=>{
         getLeads();
     }, [])
+    
     return (
-        <AuthContext.Provider value={{storeTokenInLocalStorage, LogoutUser,loggedIn, leads, BACKEND_API_URL}}>
+        <AuthContext.Provider value={{ LogoutUser, leads, BACKEND_API_URL}}>
+
+        {/* <AuthContext.Provider value={{setAccessToken, LogoutUser, leads, BACKEND_API_URL}}> */}
             {props.children}
         </AuthContext.Provider>
     )
 }
 
 export const useAuth = () => {
-    console.log("jejejejejejejejej")
     const authContextValue =  useContext(AuthContext);
-    console.log("fkfkfkfkfkfk")
 
-    console.log("authContextValue = ::::", authContextValue);
     if(!authContextValue) {
         throw new Error("useAuth is used outside the provider");
     }

@@ -39,10 +39,13 @@ export const Login = () => {
           if(response.ok) {
             const res_data = await response.json();
 
-            // localStorage.setItem("token", res_data.token);
+            console.log("res_data ===:::", res_data);
 
-            const {storeTokenInLocalStorage} = useAuth();
-            storeTokenInLocalStorage(res_data.token);
+            console.log("res_data.data.token ===:::",res_data.data.token);
+            // const {setAccessToken} = useAuth();
+            // setAccessToken(res_data.data.token);
+
+            localStorage.setItem("token", res_data.data.token);
 
             setUser({
               email: "",
