@@ -5,9 +5,8 @@ export const Home = () => {
             <section className='home-section'>
                 <div className='container grid grid-two-cols'>
                   <div className='home-section-content'>
-                    <p>Small Changes. Big Impact. Lightning Growth.</p>
-                    <h2>Small Big Growth Contact Service</h2>
-                    <p>Our data-driven marketing solutions, including AI-powered automation and predictive analytics, can help you streamline your workflows, make smarter decisions, and deliver personalized experiences that drive conversions. Let us help you optimize your marketing strategy and take your business to the next level.</p>
+                    <h2>Leads on Blink</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                   <br />
                   <a href="/signup">
                     <button>SignUp Now</button>
@@ -15,7 +14,7 @@ export const Home = () => {
                   </div>
 
                   <div className='home-section-image'>
-                    <img src="/images/home.jpg" alt="homepage image" height="500" width="500" /> 
+                    <img src="/images/home.png" alt="homepage image" height="500" width="500" /> 
                   </div>
                 </div>
             </section>

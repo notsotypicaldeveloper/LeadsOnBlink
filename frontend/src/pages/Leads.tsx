@@ -72,7 +72,7 @@ export const Leads = () => {
       key: "rzp_test_SrrurMUZ8xOO7f", // Enter the Key ID generated from the Dashboard
       amount: amount*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
-      name: "Small Big Growth", //your business name
+      name: "Leads on Blink", //your business name
       description: "Test Transaction",
       image: "https://example.com/your_logo",
       order_id: repsonseOrder.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
@@ -104,7 +104,7 @@ export const Leads = () => {
       },
       prefill: {
         //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-        name: "Small Big Growth Customer", //your customer's name
+        name: "Leads on Blink Customer", //your customer's name
         email: "smallbiggrowth@gmail.com",
         contact: "9000000000", //Provide the customer's phone number for better conversion rates
       },
