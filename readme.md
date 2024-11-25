@@ -7,7 +7,7 @@
 - Frontend deployed on: https://leads-on-blink.vercel.app/
 
 
-- Backend is kept closed, to avoid extra server charges.
+# Backend is kept closed, to avoid extra server charges.
 - For running backend, simply create .env, simply create following variables and set them, then simpy run 
 "npm run dev"
 
