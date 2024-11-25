@@ -4,13 +4,8 @@
 
 - User have to pay via razorpay, so that he/she can see the selected lead details.
 
-![alt text](signup.png)
+- Frontend deployed on: https://leads-on-blink.vercel.app/
 
-![alt text](login.png)
-
-![alt text](lead.png)
-
-![alt text](razorpay.png)
 
 - Backend is kept closed, to avoid extra server charges.
 - For running backend, simply create .env, simply create following variables and set them, then simpy run 
@@ -27,6 +22,14 @@ MONGO_DB_PASSWORD=
 
 JWT_SECRET_KEY=
 ``
+
+![alt text](signup.png)
+
+![alt text](login.png)
+
+![alt text](lead.png)
+
+![alt text](razorpay.png)
 
 
 
