@@ -1,4 +1,4 @@
-# Fav: Leads On Blink
+# Favourite: Leads On Blink
 
 - We are creating an application that help end user to buy top lead email info registered on portal.
 
