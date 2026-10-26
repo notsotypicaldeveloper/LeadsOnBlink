@@ -52,7 +52,6 @@ export const Leads = () => {
       method: "POST",
       body: JSON.stringify(
         {
-          amount: amount,
           leadId: leadId
       }),
 

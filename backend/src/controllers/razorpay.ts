@@ -1,5 +1,6 @@
 import { leadsModel } from "../models/lead-model";
 import { ordersModel } from "../models/order-model";
+import mongoose from "mongoose";
 
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
@@ -12,34 +13,34 @@ export async function createOrder(req: any, res: any, next: any) {
             key_secret: process.env.RAZORPAY_SECRET,
           });
           
-          const {amount, leadId} = req.body;
+          // amount is never taken from the client, it is always the lead's price from DB
+          const {leadId} = req.body;
 
-          if(!amount) {
-            res.status(400).send({message: "Sorry, amount is missing!", data: {}});
-            return;
-          }
-
-          if(!leadId) {
+          if(typeof leadId !== "string" || !mongoose.Types.ObjectId.isValid(leadId)) {
             res.status(400).send({message: "Sorry, Provided lead not found!", data: {}});
             return;
           }
 
-          const options = {
-            amount: amount * 100, // amount in smallest currency unit
-            currency: "INR",
-            receipt: crypto.randomBytes(10).toString("hex") //Date.now().toString(16),
-          };
-      
-          const order = await instance.orders.create(options);
-
-          // have to make an entry in order table 
           const leadDetails =  await leadsModel.findOne({_id: leadId});
           if(!leadDetails) {
             res.status(400).send({message: "Sorry, Lead not found!", data: {}});
             return;
           }
 
-        
+          const price = Number(leadDetails.price);
+          if(!Number.isFinite(price) || price <= 0) {
+            res.status(400).send({message: "Sorry, Lead price is invalid!", data: {}});
+            return;
+          }
+
+          const options = {
+            amount: Math.round(price * 100), // amount in smallest currency unit
+            currency: "INR",
+            receipt: crypto.randomBytes(10).toString("hex") //Date.now().toString(16),
+          };
+
+          const order = await instance.orders.create(options);
+
           if (!order) {
             return res.status(500).json({message: "Error when creating order with razorpay", data: {}})
           } else {
@@ -80,7 +81,9 @@ export async function validateOrder(req: any, res: any, next: any) {
         }
         
         let orderObject = await ordersModel.findOne({orderId:razorpay_order_id })
-
+        if (!orderObject) {
+          return res.status(400).json({message: "Order not found!", data: {}})
+        }
 
         return res.status(200).json({
           message: "Payment done successfully!",
